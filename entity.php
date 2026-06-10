@@ -11,31 +11,16 @@ class Entity {
         $this->damage = $damage;
     }
 
-    public function attack(Entity $target) {
-        echo "{$this->getName()} attacks {$target->getName()}." . PHP_EOL;
-        $target->setHp($target->getHp() - $this->getDamage());
-        echo "{$target->getName()} takes {$this->getDamage()} damage." . PHP_EOL;
+    public function attack(Entity $target): void {
+        echo "{$this->name} attacks {$target->name}." . PHP_EOL;
+        $target->hp -= $this->damage;
+        echo "{$target->name} takes {$this->damage} damage." . PHP_EOL . PHP_EOL;
     }
 
-    function getName(): string {
-        return $this->name;
-    }
+    public function isAlive(): bool { return $this->hp > 0; }
+    public function getName(): string { return $this->name; }
+    public function getHp(): int { return $this->hp; }
+    public function getDamage(): int { return $this->damage; }
 
-    function getHp(): int {
-        return $this->hp;
-    } 
-    function getDamage(): int {
-        return $this->damage;
-    }
-
-    function setName(string $name) {
-        $this->name = $name;
-    }
-
-    function setHp(int $hp) {
-        $this->hp = $hp;
-    } 
-    function setDamage(int $damage) {
-        $this->damage = $damage;
-    }
+    protected function setHp(int $hp): void { $this->hp = $hp; }
 }
